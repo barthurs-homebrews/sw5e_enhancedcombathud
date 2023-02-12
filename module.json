@@ -85,11 +85,11 @@
             "private": false
         }
     ],
-    "url": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud",
-    "manifest": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud/releases/download/release/module.json",
-    "download": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud/archive/refs/tags/release.zip",
+    "url": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud",
+    "manifest": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud/releases/download/release/module.json",
+    "download": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud/archive/refs/tags/release.zip",
     "socket": true,
-    "id": "sw5e_enhancedcombathud",
+    "id": "sw5eenhancedcombathud",
     "relationships": {
         "requires": [
             {
@@ -110,6 +110,6 @@
         "minimum": "10",
         "verified": "10"
     },
-    "name": "sw5e_enhancedcombathud",
+    "name": "sw5eenhancedcombathud",
     "minimumCoreVersion": "10"
 }

@@ -14,7 +14,7 @@ class echThemeOptions extends FormApplication {
       ...super.defaultOptions,
       title: "Theme Options",
       id: "echThemeOptions",
-      template: "modules/sw5e_enhancedcombathud/templates/theme-options.hbs",
+      template: "modules/sw5eenhancedcombathud/templates/theme-options.hbs",
       resizable: true,
       width: 660,
       height: $(window).height(),
@@ -24,7 +24,7 @@ class echThemeOptions extends FormApplication {
           content: `<form id="echExportTheme">
             <div class="form-group">
               <label>${game.i18n.localize(
-                "sw5e_enhancedcombathud.themeOptions.exportThemeName"
+                "sw5eenhancedcombathud.themeOptions.exportThemeName"
               )}</label>
               <input type="text" name="echExportThemeName"/>
             </div>
@@ -53,7 +53,7 @@ class echThemeOptions extends FormApplication {
                 );
                 FilePicker.upload(
                   "data",
-                  "./modules/sw5e_enhancedcombathud/scripts/themes/",
+                  "./modules/sw5eenhancedcombathud/scripts/themes/",
                   theme
                 ).then((response) => {
                   echThemeOptions.defaultOptions.buildDropdown(themeName);
@@ -114,13 +114,13 @@ class echThemeOptions extends FormApplication {
       },
       buildDropdown: (selectedTheme) => {
         if (typeof selectedTheme == "undefined")
-          game.settings.get("sw5e_enhancedcombathud", "echThemeData").theme;
+          game.settings.get("sw5eenhancedcombathud", "echThemeData").theme;
 
         $("#echThemeOptions").find('select[name="theme"] option').remove();
 
         FilePicker.browse(
           "user",
-          `./modules/sw5e_enhancedcombathud/scripts/themes`,
+          `./modules/sw5eenhancedcombathud/scripts/themes`,
           { extensions: [".json"] }
         )
           .then((response) => {
@@ -129,7 +129,7 @@ class echThemeOptions extends FormApplication {
               return files;
             }
             throw TypeError(
-              `No theme files found in sw5e_enhancedcombathud/scripts/themes`
+              `No theme files found in sw5eenhancedcombathud/scripts/themes`
             );
           })
           .then((files) => {
@@ -158,7 +158,7 @@ class echThemeOptions extends FormApplication {
   }
   getData() {
     return {
-      themeOptions: game.settings.get("sw5e_enhancedcombathud", "echThemeData"),
+      themeOptions: game.settings.get("sw5eenhancedcombathud", "echThemeData"),
     };
   }
   activateListeners(html) {
@@ -187,21 +187,21 @@ class echThemeOptions extends FormApplication {
     };
 
     echThemeOptions.defaultOptions.buildDropdown(
-      game.settings.get("sw5e_enhancedcombathud", "echThemeData").theme
+      game.settings.get("sw5eenhancedcombathud", "echThemeData").theme
     );
 
-    /*FilePicker.browse('user', `./modules/sw5e_enhancedcombathud/scripts/themes`, { extensions: ['.json'] }).then(response => {
+    /*FilePicker.browse('user', `./modules/sw5eenhancedcombathud/scripts/themes`, { extensions: ['.json'] }).then(response => {
       let files = response.files;
       if (files.length > 0) {
         return files;
       }
-      throw TypeError(`No theme files found in sw5e_enhancedcombathud/scripts/themes`);
+      throw TypeError(`No theme files found in sw5eenhancedcombathud/scripts/themes`);
     }).then(files => {
       files.forEach(file => {
         let filename = file.split('/')[file.split('/').length - 1].replace(/\.json/gi, '')
         $(html).find('select[name="theme"]').append(`<option value="${filename}">${filename[0].toUpperCase() + filename.substring(1)}</option>`);
       })
-      $(html).find('select[name="theme"]').val(game.settings.get("sw5e_enhancedcombathud", "echThemeData").theme);
+      $(html).find('select[name="theme"]').val(game.settings.get("sw5eenhancedcombathud", "echThemeData").theme);
     }).catch(error => console.log(error));*/
 
     // Handle Theme Selection
@@ -230,7 +230,7 @@ class echThemeOptions extends FormApplication {
 
         if (selectedTheme != "custom") {
           fetch(
-            `./modules/sw5e_enhancedcombathud/scripts/themes/${selectedTheme}.json`
+            `./modules/sw5eenhancedcombathud/scripts/themes/${selectedTheme}.json`
           )
             .then((response) => response.json())
             .then((colors) => {
@@ -238,7 +238,7 @@ class echThemeOptions extends FormApplication {
             });
         } else {
           updateColors(
-            game.settings.get("sw5e_enhancedcombathud", "echThemeData").colors
+            game.settings.get("sw5eenhancedcombathud", "echThemeData").colors
           );
         }
       });
@@ -255,7 +255,7 @@ class echThemeOptions extends FormApplication {
       return obj;
     }
 
-    let themeOptions = game.settings.get("sw5e_enhancedcombathud", "echThemeData");
+    let themeOptions = game.settings.get("sw5eenhancedcombathud", "echThemeData");
 
     $(event.srcElement)
       .find('button[name="colored"]')
@@ -264,13 +264,13 @@ class echThemeOptions extends FormApplication {
         setDeepObj(formData, $button.data("setting"), $button.attr("value"));
       });
 
-    await game.settings.set("sw5e_enhancedcombathud", "echThemeData", formData);
-    canvas.hud.sw5e_enhancedcombathud?.setColorSettings();
+    await game.settings.set("sw5eenhancedcombathud", "echThemeData", formData);
+    canvas.hud.sw5eenhancedcombathud?.setColorSettings();
   }
 }
 
 Hooks.once("init", function () {
-  game.settings.register("sw5e_enhancedcombathud", "echThemeData", {
+  game.settings.register("sw5eenhancedcombathud", "echThemeData", {
     name: "Data used for Theming",
     type: Object,
     default: {
@@ -386,32 +386,32 @@ Hooks.once("init", function () {
   });
 
   // Define a settings submenu which handles advanced configuration needs
-  game.settings.registerMenu("sw5e_enhancedcombathud", "echThemeOptions", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.thememenu.name"),
-    label: game.i18n.localize("sw5e_enhancedcombathud.settings.thememenu.label"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.thememenu.hint"),
+  game.settings.registerMenu("sw5eenhancedcombathud", "echThemeOptions", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.thememenu.name"),
+    label: game.i18n.localize("sw5eenhancedcombathud.settings.thememenu.label"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.thememenu.hint"),
     icon: "fas fa-bars",
     type: echThemeOptions,
     restricted: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "rangefinder", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.rangefinder.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.rangefinder.hint"),
+  game.settings.register("sw5eenhancedcombathud", "rangefinder", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.rangefinder.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.rangefinder.hint"),
     scope: "world",
     config: true,
     type: String,
     choices: {
-        "none": game.i18n.localize("sw5e_enhancedcombathud.settings.rangefinder.choices.none"),
-        "rangeOnly": game.i18n.localize("sw5e_enhancedcombathud.settings.rangefinder.choices.rangeOnly"),
-        "full": game.i18n.localize("sw5e_enhancedcombathud.settings.rangefinder.choices.full"),
+        "none": game.i18n.localize("sw5eenhancedcombathud.settings.rangefinder.choices.none"),
+        "rangeOnly": game.i18n.localize("sw5eenhancedcombathud.settings.rangefinder.choices.rangeOnly"),
+        "full": game.i18n.localize("sw5eenhancedcombathud.settings.rangefinder.choices.full"),
       },
     default: "rangeOnly",
 });
 
-  game.settings.register("sw5e_enhancedcombathud", "scale", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.scale.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.scale.hint"),
+  game.settings.register("sw5eenhancedcombathud", "scale", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.scale.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.scale.hint"),
     scope: "client",
     config: true,
     range: {
@@ -423,39 +423,39 @@ Hooks.once("init", function () {
     default: 0.5,
   });
 
-  /*game.settings.register("sw5e_enhancedcombathud", "noAutoscale", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.noAutoscale.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.noAutoscale.hint"),
+  /*game.settings.register("sw5eenhancedcombathud", "noAutoscale", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.noAutoscale.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.noAutoscale.hint"),
     scope: "client",
     config: true,
     type: Boolean,
     default: false,
   });*/
 
-  game.settings.register("sw5e_enhancedcombathud", "leftPos", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.leftPos.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.leftPos.hint"),
+  game.settings.register("sw5eenhancedcombathud", "leftPos", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.leftPos.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.leftPos.hint"),
     scope: "client",
     config: true,
     type: Number,
     default: 15,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "botPos", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.botPos.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.botPos.hint"),
+  game.settings.register("sw5eenhancedcombathud", "botPos", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.botPos.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.botPos.hint"),
     scope: "client",
     config: true,
     type: Number,
     default: 15,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "hideMacroPlayers", {
+  game.settings.register("sw5eenhancedcombathud", "hideMacroPlayers", {
     name: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.hideMacroPlayers.name"
+      "sw5eenhancedcombathud.settings.hideMacroPlayers.name"
     ),
     hint: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.hideMacroPlayers.hint"
+      "sw5eenhancedcombathud.settings.hideMacroPlayers.hint"
     ),
     scope: "client",
     config: true,
@@ -469,12 +469,12 @@ Hooks.once("init", function () {
     },
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "playerDetailsBottom", {
+  game.settings.register("sw5eenhancedcombathud", "playerDetailsBottom", {
     name: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.playerDetailsBottom.name"
+      "sw5eenhancedcombathud.settings.playerDetailsBottom.name"
     ),
     hint: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.playerDetailsBottom.hint"
+      "sw5eenhancedcombathud.settings.playerDetailsBottom.hint"
     ),
     scope: "client",
     config: true,
@@ -482,63 +482,63 @@ Hooks.once("init", function () {
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "noAA", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.noAA.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.noAA.hint"),
+  game.settings.register("sw5eenhancedcombathud", "noAA", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.noAA.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.noAA.hint"),
     scope: "world",
     config: true,
     type: Boolean,
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "openCombatStart", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.openCombatStart.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.openCombatStart.hint"),
+  game.settings.register("sw5eenhancedcombathud", "openCombatStart", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.openCombatStart.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.openCombatStart.hint"),
     scope: "world",
     config: true,
     type: Boolean,
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "preparedSpells", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.preparedSpells.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.preparedSpells.hint"),
+  game.settings.register("sw5eenhancedcombathud", "preparedSpells", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.preparedSpells.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.preparedSpells.hint"),
     scope: "client",
     config: true,
     type: Boolean,
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "showWeaponsItems", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.showWeaponsItems.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.showWeaponsItems.hint"),
+  game.settings.register("sw5eenhancedcombathud", "showWeaponsItems", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.showWeaponsItems.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.showWeaponsItems.hint"),
     scope: "world",
     config: true,
     type: Boolean,
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "switchEquip", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.switchEquip.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.switchEquip.hint"),
+  game.settings.register("sw5eenhancedcombathud", "switchEquip", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.switchEquip.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.switchEquip.hint"),
     scope: "world",
     config: true,
     type: Boolean,
     default: true,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "showTooltips", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.showTooltips.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.showTooltips.hint"),
+  game.settings.register("sw5eenhancedcombathud", "showTooltips", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.showTooltips.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.showTooltips.hint"),
     scope: "client",
     config: true,
     type: Boolean,
     default: true,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "tooltipScale", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.tooltipScale.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.tooltipScale.hint"),
+  game.settings.register("sw5eenhancedcombathud", "tooltipScale", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.tooltipScale.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.tooltipScale.hint"),
     scope: "client",
     config: true,
     range: {
@@ -550,12 +550,12 @@ Hooks.once("init", function () {
     default: 1,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "showTooltipsSpecial", {
+  game.settings.register("sw5eenhancedcombathud", "showTooltipsSpecial", {
     name: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsSpecial.name"
+      "sw5eenhancedcombathud.settings.showTooltipsSpecial.name"
     ),
     hint: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsSpecial.hint"
+      "sw5eenhancedcombathud.settings.showTooltipsSpecial.hint"
     ),
     scope: "client",
     config: true,
@@ -563,14 +563,14 @@ Hooks.once("init", function () {
     default: true,
   });
   game.settings.register(
-    "sw5e_enhancedcombathud",
+    "sw5eenhancedcombathud",
     "showTooltipsAbilityMenuAbilities",
     {
       name: game.i18n.localize(
-        "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuAbilities.name"
+        "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuAbilities.name"
       ),
       hint: game.i18n.localize(
-        "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuAbilities.hint"
+        "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuAbilities.hint"
       ),
       scope: "client",
       config: true,
@@ -578,24 +578,24 @@ Hooks.once("init", function () {
       default: true,
     }
   );
-  game.settings.register("sw5e_enhancedcombathud", "showTooltipsAbilityMenuSkills", {
+  game.settings.register("sw5eenhancedcombathud", "showTooltipsAbilityMenuSkills", {
     name: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuSkills.name"
+      "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuSkills.name"
     ),
     hint: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuSkills.hint"
+      "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuSkills.hint"
     ),
     scope: "client",
     config: true,
     type: Boolean,
     default: true,
   });
-  game.settings.register("sw5e_enhancedcombathud", "showTooltipsAbilityMenuTools", {
+  game.settings.register("sw5eenhancedcombathud", "showTooltipsAbilityMenuTools", {
     name: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuTools.name"
+      "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuTools.name"
     ),
     hint: game.i18n.localize(
-      "sw5e_enhancedcombathud.settings.showTooltipsAbilityMenuTools.hint"
+      "sw5eenhancedcombathud.settings.showTooltipsAbilityMenuTools.hint"
     ),
     scope: "client",
     config: true,
@@ -603,27 +603,27 @@ Hooks.once("init", function () {
     default: true,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "fadeOutInactive", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeOutInactive.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeOutInactive.hint"),
+  game.settings.register("sw5eenhancedcombathud", "fadeOutInactive", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.fadeOutInactive.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.fadeOutInactive.hint"),
     scope: "client",
     config: true,
     type: Boolean,
     default: false,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "fadeoutDelay", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeoutDelay.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeoutDelay.hint"),
+  game.settings.register("sw5eenhancedcombathud", "fadeoutDelay", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.fadeoutDelay.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.fadeoutDelay.hint"),
     scope: "client",
     config: true,
     type: Number,
     default: 4,
   });
 
-  game.settings.register("sw5e_enhancedcombathud", "fadeoutOpacity", {
-    name: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeoutOpacity.name"),
-    hint: game.i18n.localize("sw5e_enhancedcombathud.settings.fadeoutOpacity.hint"),
+  game.settings.register("sw5eenhancedcombathud", "fadeoutOpacity", {
+    name: game.i18n.localize("sw5eenhancedcombathud.settings.fadeoutOpacity.name"),
+    hint: game.i18n.localize("sw5eenhancedcombathud.settings.fadeoutOpacity.hint"),
     scope: "client",
     config: true,
     type: Number,
@@ -639,7 +639,7 @@ Hooks.once("init", function () {
 //Color Settings
 
 Hooks.once("ready", function () {
-  /*game.settings.set("sw5e_enhancedcombathud", "echThemeData", {
+  /*game.settings.set("sw5eenhancedcombathud", "echThemeData", {
     theme: 'custom',
     font: 'Roboto',
     colors: {
@@ -752,22 +752,22 @@ Hooks.once("ready", function () {
 Hooks.on("renderItemSheet", (itemsheet, html) => {
   let actionType = itemsheet.object.system.activation.type;
   let itemType = itemsheet.object.data.type;
-  let echFlags = itemsheet.object.data.flags.sw5e_enhancedcombathud;
+  let echFlags = itemsheet.object.data.flags.sw5eenhancedcombathud;
 
   // Constant function that returns formatted label
   const labelTemplate = (set) => {
     return `<label class="checkbox">
       <input type="checkbox" 
         ${echFlags?.[set] ? "checked" : ""} 
-        name="flags.sw5e_enhancedcombathud.${set}"> 
-        ${game.i18n.localize("sw5e_enhancedcombathud.itemconfig." + set + ".text")}
+        name="flags.sw5eenhancedcombathud.${set}"> 
+        ${game.i18n.localize("sw5eenhancedcombathud.itemconfig." + set + ".text")}
       </label>`;
   };
 
   const configHtmlElements = {
     start: `<div class="form-group stacked" id="test">
       <label>${game.i18n.localize(
-        "sw5e_enhancedcombathud.itemconfig.sets.text"
+        "sw5eenhancedcombathud.itemconfig.sets.text"
       )}</label>`,
     end: `</div>`,
   };
@@ -805,23 +805,23 @@ Hooks.on("getSceneControlButtons", (controls, b, c) => {
   controls
     .find((x) => x.name == "token")
     .tools.push({
-      active: canvas.hud?.sw5e_enhancedcombathud?._state == 2,
+      active: canvas.hud?.sw5eenhancedcombathud?._state == 2,
       icon: "ech-swords",
       name: "echtoggle",
-      title: game.i18n.localize("sw5e_enhancedcombathud.controls.toggle.title"),
+      title: game.i18n.localize("sw5eenhancedcombathud.controls.toggle.title"),
       onClick: function (toggle) {
         if(_token.document.actor.type == "vehicle") return
         if (toggle) {
           if (_token && canvas.tokens.get(_token.id) && _token.actor)
-            canvas.hud.sw5e_enhancedcombathud.bind(_token);
+            canvas.hud.sw5eenhancedcombathud.bind(_token);
           else {
             this.active = false;
             ui.notifications.warn(
-              game.i18n.localize("sw5e_enhancedcombathud.controls.toggle.warning")
+              game.i18n.localize("sw5eenhancedcombathud.controls.toggle.warning")
             );
           }
         } else {
-          canvas.hud.sw5e_enhancedcombathud.close();
+          canvas.hud.sw5eenhancedcombathud.close();
         }
 
         $(".ech-swords").parent().toggleClass("active", toggle);
@@ -851,7 +851,7 @@ Handlebars.registerHelper("echLocalize", (data, data2, data3) => {
   if (typeof data3 == "string")
     str += `${data3.charAt(0).toUpperCase() + data3.slice(1)}`;
 
-  return game.i18n.localize(`sw5e_enhancedcombathud.themeOptions${str}`);
+  return game.i18n.localize(`sw5eenhancedcombathud.themeOptions${str}`);
 });
 
 Handlebars.registerHelper("ifObject", function (item, options) {
@@ -871,14 +871,14 @@ Handlebars.registerHelper("hasUses", function (item) {
   if (item.system.consume?.type) {
     switch (item.system.consume.type) {
       case "ammo":
-        let ammoItem = canvas.hud.sw5e_enhancedcombathud.hudData.actor.items.find(
+        let ammoItem = canvas.hud.sw5eenhancedcombathud.hudData.actor.items.find(
           (i) => i.id == item.system.consume?.target
         );
         itemCount = ammoItem?.system?.quantity;
         break;
       case "attribute":
         let value = Object.byString(
-          canvas.hud.sw5e_enhancedcombathud.hudData.actor.system,
+          canvas.hud.sw5eenhancedcombathud.hudData.actor.system,
           item.system.consume.target
         );
         let resCount = value;
@@ -895,8 +895,8 @@ Handlebars.registerHelper("hasUses", function (item) {
 });
 
 Handlebars.registerHelper("generateSavingThrows", (str) => {
-  let data = canvas.hud.sw5e_enhancedcombathud.hudData[str];
-  let localize = canvas.hud.sw5e_enhancedcombathud.hudData.settings.localize;
+  let data = canvas.hud.sw5eenhancedcombathud.hudData[str];
+  let localize = canvas.hud.sw5eenhancedcombathud.hudData.settings.localize;
   let html = "";
   let prof = {
     0: "not-proficient",
@@ -932,8 +932,8 @@ Handlebars.registerHelper("generateSavingThrows", (str) => {
 });
 
 Handlebars.registerHelper("generateAbilities", function (str) {
-  let data = canvas.hud.sw5e_enhancedcombathud.hudData[str];
-  let localize = canvas.hud.sw5e_enhancedcombathud.hudData.settings.localize;
+  let data = canvas.hud.sw5eenhancedcombathud.hudData[str];
+  let localize = canvas.hud.sw5eenhancedcombathud.hudData.settings.localize;
   let html = "";
   let prof = {
     0: "not-proficient",
@@ -989,7 +989,7 @@ $("body").on("click", "#echThemeOptions li h4.toggleOptions", (event) => {
 });
 
 Hooks.on("canvasReady", function () {
-  canvas.hud.sw5e_enhancedcombathud?.close();
+  canvas.hud.sw5eenhancedcombathud?.close();
   $(".extended-combat-hud").remove();
 });
 

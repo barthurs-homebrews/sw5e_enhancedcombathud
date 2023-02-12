@@ -12,15 +12,15 @@ class CombatHud {
     this._itemCount = this.actor.items.size
     this.settings = {
       isMagicItems: game.modules.get("magicitems")?.active,
-      switchEquip: game.settings.get("sw5e_enhancedcombathud", "switchEquip"),
-      tooltipScale: game.settings.get("sw5e_enhancedcombathud", "tooltipScale"),
+      switchEquip: game.settings.get("sw5eenhancedcombathud", "switchEquip"),
+      tooltipScale: game.settings.get("sw5eenhancedcombathud", "tooltipScale"),
       fadeOutInactive: game.settings.get(
-        "sw5e_enhancedcombathud",
+        "sw5eenhancedcombathud",
         "fadeOutInactive"
       ),
-      spellMode: game.settings.get("sw5e_enhancedcombathud", "preparedSpells"),
+      spellMode: game.settings.get("sw5eenhancedcombathud", "preparedSpells"),
       playerDetailsBottom: game.settings.get(
-        "sw5e_enhancedcombathud",
+        "sw5eenhancedcombathud",
         "playerDetailsBottom"
       ),
       localize: {
@@ -45,32 +45,32 @@ class CombatHud {
         InitiativeRoll: game.i18n.localize('COMBAT.InitiativeRoll'),
 
         mainactions: game.i18n.localize(
-          "sw5e_enhancedcombathud.hud.mainactions.name"
+          "sw5eenhancedcombathud.hud.mainactions.name"
         ),
-        castspell: game.i18n.localize("sw5e_enhancedcombathud.hud.castspell.name"),
-        usepower: game.i18n.localize("sw5e_enhancedcombathud.hud.usepower.name"),
-        useitem: game.i18n.localize("sw5e_enhancedcombathud.hud.useitem.name"),
+        castspell: game.i18n.localize("sw5eenhancedcombathud.hud.castspell.name"),
+        usepower: game.i18n.localize("sw5eenhancedcombathud.hud.usepower.name"),
+        useitem: game.i18n.localize("sw5eenhancedcombathud.hud.useitem.name"),
         bonusaction: game.i18n.localize(
-          "sw5e_enhancedcombathud.hud.bonusaction.name"
+          "sw5eenhancedcombathud.hud.bonusaction.name"
         ),
-        reaction: game.i18n.localize("sw5e_enhancedcombathud.hud.reaction.name"),
+        reaction: game.i18n.localize("sw5eenhancedcombathud.hud.reaction.name"),
         specialaction: game.i18n.localize(
-          "sw5e_enhancedcombathud.hud.specialaction.name"
+          "sw5eenhancedcombathud.hud.specialaction.name"
         ),
-        pass: game.i18n.localize("sw5e_enhancedcombathud.hud.pass.name"),
-        endturn: game.i18n.localize("sw5e_enhancedcombathud.hud.endturn.name"),
-        hp: game.i18n.localize("sw5e_enhancedcombathud.hud.hp.name"),
-        ac: game.i18n.localize("sw5e_enhancedcombathud.hud.ac.name"),
-        of: game.i18n.localize("sw5e_enhancedcombathud.hud.of.name"),
-        inv: game.i18n.localize("sw5e_enhancedcombathud.hud.inventory.name"),
-        saves: game.i18n.localize("sw5e_enhancedcombathud.hud.saves.name"),
-        skills: game.i18n.localize("sw5e_enhancedcombathud.hud.skills.name"),
-        tools: game.i18n.localize("sw5e_enhancedcombathud.hud.tools.name"),
+        pass: game.i18n.localize("sw5eenhancedcombathud.hud.pass.name"),
+        endturn: game.i18n.localize("sw5eenhancedcombathud.hud.endturn.name"),
+        hp: game.i18n.localize("sw5eenhancedcombathud.hud.hp.name"),
+        ac: game.i18n.localize("sw5eenhancedcombathud.hud.ac.name"),
+        of: game.i18n.localize("sw5eenhancedcombathud.hud.of.name"),
+        inv: game.i18n.localize("sw5eenhancedcombathud.hud.inventory.name"),
+        saves: game.i18n.localize("sw5eenhancedcombathud.hud.saves.name"),
+        skills: game.i18n.localize("sw5eenhancedcombathud.hud.skills.name"),
+        tools: game.i18n.localize("sw5eenhancedcombathud.hud.tools.name"),
         powers: {
           0: CONFIG.SW5E.powerLevels["0"],
           //pact: CONFIG.SW5E.powerPreparationModes.pact,
           will: CONFIG.SW5E.powerPreparationModes.atwill,
-          innate: game.i18n.localize("sw5e_enhancedcombathud.hud.spells.innate"),
+          innate: game.i18n.localize("sw5eenhancedcombathud.hud.spells.innate"),
           1: CONFIG.SW5E.powerLevels["1"],
           2: CONFIG.SW5E.powerLevels["2"],
           3: CONFIG.SW5E.powerLevels["3"],
@@ -109,7 +109,7 @@ class CombatHud {
       }),
       consumables: await this.getItems({
         actionType: ["action", "legendary"],
-        itemType: game.settings.get("sw5e_enhancedcombathud", "showWeaponsItems") ? ["consumable", "equipment", "loot", "weapon"] : ["consumable", "equipment", "loot"],
+        itemType: game.settings.get("sw5eenhancedcombathud", "showWeaponsItems") ? ["consumable", "equipment", "loot", "weapon"] : ["consumable", "equipment", "loot"],
       }),
     };
     console.log('THIS.ACTIONS:');
@@ -178,12 +178,12 @@ class CombatHud {
       ac: this.actor.system.attributes.ac.value,
       classes: this.getClassesAsString(),
       specialItemsNames: {
-        disengage: game.i18n.localize("sw5e_enhancedcombathud.items.disengage.name"),
-        hide: game.i18n.localize("sw5e_enhancedcombathud.items.hide.name"),
-        shove: game.i18n.localize("sw5e_enhancedcombathud.items.shove.name"),
-        dash: game.i18n.localize("sw5e_enhancedcombathud.items.dash.name"),
-        dodge: game.i18n.localize("sw5e_enhancedcombathud.items.dodge.name"),
-        ready: game.i18n.localize("sw5e_enhancedcombathud.items.ready.name"),
+        disengage: game.i18n.localize("sw5eenhancedcombathud.items.disengage.name"),
+        hide: game.i18n.localize("sw5eenhancedcombathud.items.hide.name"),
+        shove: game.i18n.localize("sw5eenhancedcombathud.items.shove.name"),
+        dash: game.i18n.localize("sw5eenhancedcombathud.items.dash.name"),
+        dodge: game.i18n.localize("sw5eenhancedcombathud.items.dodge.name"),
+        ready: game.i18n.localize("sw5eenhancedcombathud.items.ready.name"),
       },
     };
     this.resources = {
@@ -227,7 +227,7 @@ class CombatHud {
       this.skills[skill].label = CONFIG.SW5E.skills[skill];
       this.skills[skill].proficient = this.skills[skill].value;
       this.skills[skill].tooltip = game.i18n.localize(
-        `sw5e_enhancedcombathud.skills.${skill}.tooltip`
+        `sw5eenhancedcombathud.skills.${skill}.tooltip`
       );
     });
     
@@ -247,7 +247,7 @@ class CombatHud {
       this.saves[ability].label = CONFIG.SW5E.abilities[ability];
       this.saves[ability].total = this.saves[ability].save;
       this.saves[ability].tooltip = game.i18n.localize(
-        `sw5e_enhancedcombathud.abilities.${ability}.tooltip`
+        `sw5eenhancedcombathud.abilities.${ability}.tooltip`
       );
     });
     return this;
@@ -427,25 +427,25 @@ class CombatHud {
     }
     for (let item of items) {
       //if(item.name == "Vibrostiletto") sets.set1.primary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set1p) sets.set1.primary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set2p) sets.set2.primary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set3p) sets.set3.primary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set1s) sets.set1.secondary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set2s) sets.set2.secondary = item;
-      if (item.flags.sw5e_enhancedcombathud?.set3s) sets.set3.secondary = item;
+      if (item.flags.sw5eenhancedcombathud?.set1p) sets.set1.primary = item;
+      if (item.flags.sw5eenhancedcombathud?.set2p) sets.set2.primary = item;
+      if (item.flags.sw5eenhancedcombathud?.set3p) sets.set3.primary = item;
+      if (item.flags.sw5eenhancedcombathud?.set1s) sets.set1.secondary = item;
+      if (item.flags.sw5eenhancedcombathud?.set2s) sets.set2.secondary = item;
+      if (item.flags.sw5eenhancedcombathud?.set3s) sets.set3.secondary = item;
     }
 
-    sets.active = this.actor.flags.sw5e_enhancedcombathud?.activeSet
-      ? sets[`${this.actor.flags.sw5e_enhancedcombathud?.activeSet}`]
+    sets.active = this.actor.flags.sw5eenhancedcombathud?.activeSet
+      ? sets[`${this.actor.flags.sw5eenhancedcombathud?.activeSet}`]
       : sets.set1;
 
     return sets;
   }
   _render() {
-    if(this.token.actor)canvas.hud.sw5e_enhancedcombathud.bind(this.token);
+    if(this.token.actor)canvas.hud.sw5eenhancedcombathud.bind(this.token);
   }
   async switchSets(active) {
-    await this.actor.setFlag("sw5e_enhancedcombathud", "activeSet", active);
+    await this.actor.setFlag("sw5eenhancedcombathud", "activeSet", active);
     if (!this.settings.switchEquip) return;
 
     
@@ -460,17 +460,17 @@ class CombatHud {
   
   set hasAction(value) {
     
-    $(canvas.hud.sw5e_enhancedcombathud.element)
+    $(canvas.hud.sw5eenhancedcombathud.element)
       .find('.actions-container.has-actions[data-actionbartype="actions"]')
       .toggleClass("actions-used", !value);
   }
   set hasReaction(value) {
-    $(canvas.hud.sw5e_enhancedcombathud.element)
+    $(canvas.hud.sw5eenhancedcombathud.element)
       .find('.actions-container.has-actions[data-actionbartype="reactions"]')
       .toggleClass("actions-used", !value);
   }
   set hasBonus(value) {
-    $(canvas.hud.sw5e_enhancedcombathud.element)
+    $(canvas.hud.sw5eenhancedcombathud.element)
       .find('.actions-container.has-actions[data-actionbartype="bonus"]')
       .toggleClass("actions-used", !value);
   }
@@ -484,8 +484,8 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   static get defaultOptions() {
     const options = super.defaultOptions;
     options.template =
-      "modules/sw5e_enhancedcombathud/templates/extendedCombatHud.html";
-    options.id = "sw5e_enhancedcombathud";
+      "modules/sw5eenhancedcombathud/templates/extendedCombatHud.html";
+    options.id = "sw5eenhancedcombathud";
     options.dragDrop = [{ dragSelector: null, dropSelector: null }];
     return options;
   }
@@ -544,8 +544,8 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
     this.rigHtml();
     const position = {
       "z-index": 100,
-      left: game.settings.get("sw5e_enhancedcombathud", "leftPos") + "px",
-      bottom: game.settings.get("sw5e_enhancedcombathud", "botPos") + "px",
+      left: game.settings.get("sw5eenhancedcombathud", "leftPos") + "px",
+      bottom: game.settings.get("sw5eenhancedcombathud", "botPos") + "px",
     };
     this.element.css(position);
     this.toggleMinimize($("body").hasClass("minimize-ech-hud"));
@@ -563,15 +563,15 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
     );
     let echHUDWidth = $(".extended-combat-hud").outerWidth();
     let windowWidth = $(window).width() - 340;
-    let scale = true//game.settings.get("sw5e_enhancedcombathud", "noAutoscale")
-      ? game.settings.get("sw5e_enhancedcombathud", "scale")
+    let scale = true//game.settings.get("sw5eenhancedcombathud", "noAutoscale")
+      ? game.settings.get("sw5eenhancedcombathud", "scale")
       : (1 / (echHUDWidth / windowWidth)) *
-        game.settings.get("sw5e_enhancedcombathud", "scale");
+        game.settings.get("sw5eenhancedcombathud", "scale");
 
     const position = {
       bottom: $(".extended-combat-hud").hasClass("minimize-hud")
         ? `0px`
-        : `${game.settings.get("sw5e_enhancedcombathud", "botPos")}px`,
+        : `${game.settings.get("sw5eenhancedcombathud", "botPos")}px`,
       transform: $(".extended-combat-hud").hasClass("minimize-hud")
         ? `scale(${scale > 1 ? 1 : scale}) translateY(100%)`
         : `scale(${scale > 1 ? 1 : scale})`,
@@ -601,11 +601,11 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   loadCSSSettings() {
     document.documentElement.style.setProperty(
       "--ech-fadeout-deleay",
-      game.settings.get("sw5e_enhancedcombathud", "fadeoutDelay") + "s"
+      game.settings.get("sw5eenhancedcombathud", "fadeoutDelay") + "s"
     );
     document.documentElement.style.setProperty(
       "--ech-fadeout-opacity",
-      game.settings.get("sw5e_enhancedcombathud", "fadeoutOpacity")
+      game.settings.get("sw5eenhancedcombathud", "fadeoutOpacity")
     );
   }
 
@@ -640,12 +640,12 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
       });
     }
 
-    let theme = game.settings.get("sw5e_enhancedcombathud", "echThemeData");
+    let theme = game.settings.get("sw5eenhancedcombathud", "echThemeData");
 
     if (theme.theme == "custom") {
       setThemeColors(theme.colors);
     } else {
-      fetch(`./modules/sw5e_enhancedcombathud/scripts/themes/${theme.theme}.json`)
+      fetch(`./modules/sw5eenhancedcombathud/scripts/themes/${theme.theme}.json`)
         .then((response) => response.json())
         .then((colors) => {
           setThemeColors(colors);
@@ -656,10 +656,10 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   rigAutoScale() {
     let echHUDWidth = $(".extended-combat-hud").outerWidth();
     let windowWidth = $(window).width() - 340;
-    let scale = true //game.settings.get("sw5e_enhancedcombathud", "noAutoscale")
-      ? game.settings.get("sw5e_enhancedcombathud", "scale")
+    let scale = true //game.settings.get("sw5eenhancedcombathud", "noAutoscale")
+      ? game.settings.get("sw5eenhancedcombathud", "scale")
       : (1 / (echHUDWidth / windowWidth)) *
-        game.settings.get("sw5e_enhancedcombathud", "scale");
+        game.settings.get("sw5eenhancedcombathud", "scale");
 
     $(".extended-combat-hud").css({
       transform: `scale(${scale > 1 ? 1 : scale})`,
@@ -1008,7 +1008,7 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   initSets() {
     console.log('intiating sets...');
     let set =
-      this.hudData.actor.flags.sw5e_enhancedcombathud?.activeSet || "set1";
+      this.hudData.actor.flags.sw5eenhancedcombathud?.activeSet || "set1";
     this.switchSets(set);
     $(this.element)
       .find('div[data-type="switchWeapons"]')
@@ -1134,8 +1134,8 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   }
 
   toggleMacroPlayers(togg) {
-    if(!game.settings.get("sw5e_enhancedcombathud", "hideMacroPlayers")) return;
-    if (togg || !game.settings.get("sw5e_enhancedcombathud", "hideMacroPlayers")) {
+    if(!game.settings.get("sw5eenhancedcombathud", "hideMacroPlayers")) return;
+    if (togg || !game.settings.get("sw5eenhancedcombathud", "hideMacroPlayers")) {
       $("#players")[0].style.visibility = "visible";
       $("#hotbar").show(500);
     } else {
@@ -1163,7 +1163,7 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
     console.log(obj);
 
 
-    let _this = canvas.hud.sw5e_enhancedcombathud.hudData;
+    let _this = canvas.hud.sw5eenhancedcombathud.hudData;
     let convertSpellSlot;
     // if (obj == _this.settings.localize.powers.pact) {
     //   convertSpellSlot = "pact";
@@ -1214,25 +1214,25 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   }
 
   async drawTooltip(itemName, offset, type) {
-    const showTooltip = game.settings.get("sw5e_enhancedcombathud", "showTooltips");
+    const showTooltip = game.settings.get("sw5eenhancedcombathud", "showTooltips");
     const showTooltipSpecial = game.settings.get(
-      "sw5e_enhancedcombathud",
+      "sw5eenhancedcombathud",
       "showTooltipsSpecial"
     );
     if (
       !showTooltip ||
       (type == "save" &&
         !game.settings.get(
-          "sw5e_enhancedcombathud",
+          "sw5eenhancedcombathud",
           "showTooltipsAbilityMenuAbilities"
         )) ||
       (type == "skill" &&
         !game.settings.get(
-          "sw5e_enhancedcombathud",
+          "sw5eenhancedcombathud",
           "showTooltipsAbilityMenuSkills"
         )) ||
       (type == "tool" &&
-        !game.settings.get("sw5e_enhancedcombathud", "showTooltipsAbilityMenuTools"))
+        !game.settings.get("sw5eenhancedcombathud", "showTooltipsAbilityMenuTools"))
     )
       return;
     if (!showTooltipSpecial && ECHItems[itemName]) return;
@@ -1339,19 +1339,19 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
             <div class="ech-tooltip-details">
               <div>
                 <span>${game.i18n.localize(
-                  "sw5e_enhancedcombathud.tooltip.target.name"
+                  "sw5eenhancedcombathud.tooltip.target.name"
                 )}</span>
                 <span>${target}</span>
               </div>
               <div>
                 <span>${game.i18n.localize(
-                  "sw5e_enhancedcombathud.tooltip.range.name"
+                  "sw5eenhancedcombathud.tooltip.range.name"
                 )}</span>
                 <span>${range}</span></div>
               </div>
             <div class="ech-tooltip-properties">
               <h3>${game.i18n.localize(
-                "sw5e_enhancedcombathud.tooltip.properties.name"
+                "sw5eenhancedcombathud.tooltip.properties.name"
               )}</h3>
               ${properties.join("\n")}
             </div>
@@ -1419,7 +1419,7 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
 
   async showRangeFinder(itemName){
     if(!game.Levels3DPreview?._active || !itemName) return;
-    const sett = game.settings.get("sw5e_enhancedcombathud", "rangefinder")
+    const sett = game.settings.get("sw5eenhancedcombathud", "rangefinder")
     const showRangeFinder = sett != "none";
     if(!showRangeFinder) return;
     const isMidi = game.modules.get("midi-qol")?.active
@@ -1495,8 +1495,8 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
     if (!item) return;
     let ps = set.substring(4, set.length) == "p" ? "primary" : "secondary";
     let oldSetItem = this.hudData.sets[set.substring(0, set.length - 1)][ps];
-    if (oldSetItem) await oldSetItem.setFlag("sw5e_enhancedcombathud", set, false);
-    await item.setFlag("sw5e_enhancedcombathud", set, true);
+    if (oldSetItem) await oldSetItem.setFlag("sw5eenhancedcombathud", set, false);
+    await item.setFlag("sw5eenhancedcombathud", set, true);
     $(target).css({
       "background-image": `url(${
         this.hudData.sets[set.substring(0, set.length - 1)][ps].img
@@ -1509,7 +1509,7 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
     let ps = set.substring(4, set.length) == "p" ? "primary" : "secondary";
     let oldSetItem = this.hudData.sets[set.substring(0, set.length - 1)][ps];
     if (oldSetItem) {
-      await oldSetItem.setFlag("sw5e_enhancedcombathud", set, false);
+      await oldSetItem.setFlag("sw5eenhancedcombathud", set, false);
       $(this.element)
         .find(`[data-set="${set}"]`)
         .css({ "background-image": `` });
@@ -1690,40 +1690,40 @@ class ECHDiceRoller {
 
 Hooks.once("init", () => {
   Hooks.on("renderHeadsUpDisplay", async (app, html, data) => {
-    //html.append('<template id="sw5e_enhancedcombathud"></template>');
-    canvas.hud.sw5e_enhancedcombathud = new CombatHudCanvasElement();
+    //html.append('<template id="sw5eenhancedcombathud"></template>');
+    canvas.hud.sw5eenhancedcombathud = new CombatHudCanvasElement();
   });
 });
 
 Hooks.on("updateActor", (actor, updates) => {
   if (
-    actor.id == canvas.hud.sw5e_enhancedcombathud?.hudData?.actor?.id
+    actor.id == canvas.hud.sw5eenhancedcombathud?.hudData?.actor?.id
   ) {
     let ad = actor.system.attributes;
-    canvas.hud.sw5e_enhancedcombathud.updatePortrait(ad.hp, ad.ac.value);
+    canvas.hud.sw5eenhancedcombathud.updatePortrait(ad.hp, ad.ac.value);
   }
 });
 
 Hooks.on("updateItem", (item, updates) => {
   let actor = item.parent;
-  if (!actor || actor?.id != canvas.hud.sw5e_enhancedcombathud?.hudData?.actor?.id)
+  if (!actor || actor?.id != canvas.hud.sw5eenhancedcombathud?.hudData?.actor?.id)
     return;
   let ad = actor.system.attributes;
-    canvas.hud.sw5e_enhancedcombathud.updatePortrait(ad.hp, ad.ac.value);
+    canvas.hud.sw5eenhancedcombathud.updatePortrait(ad.hp, ad.ac.value);
 });
 
 Hooks.on("controlToken", (token, controlled) => {
   if(token?.document?.actor?.type == "vehicle") return
   if (
     controlled &&
-    canvas.hud.sw5e_enhancedcombathud?.rendered &&
-    canvas.hud.sw5e_enhancedcombathud.hudData.token.id != token.id
+    canvas.hud.sw5eenhancedcombathud?.rendered &&
+    canvas.hud.sw5eenhancedcombathud.hudData.token.id != token.id
   ) {
-    canvas.hud.sw5e_enhancedcombathud.close();
+    canvas.hud.sw5eenhancedcombathud.close();
     setTimeout(() => {
       const ctoken = canvas.tokens.get(token.id)
       if(!ctoken?.actor) return
-      canvas.hud.sw5e_enhancedcombathud.bind(ctoken);
+      canvas.hud.sw5eenhancedcombathud.bind(ctoken);
     }, 250);
   }
 });
@@ -1731,7 +1731,7 @@ Hooks.on("controlToken", (token, controlled) => {
 Hooks.on("preUpdateToken", (token, updates) => {
   if (
     token.actor &&
-    canvas.hud.sw5e_enhancedcombathud?.hudData?.actor?.id == token.actor.id &&
+    canvas.hud.sw5eenhancedcombathud?.hudData?.actor?.id == token.actor.id &&
     game.combat?.started &&
     ("x" in updates || "y" in updates)
   ) {
@@ -1746,56 +1746,56 @@ Hooks.on("preUpdateToken", (token, updates) => {
       canvas.grid.measureDistances(segments, { gridSpaces: true }) /
         canvas.dimensions.distance
     );
-    canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.moved += distance;
+    canvas.hud.sw5eenhancedcombathud.hudData.other.movement.moved += distance;
     const bars = Math.floor(
-      canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.moved /
-        canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.max
+      canvas.hud.sw5eenhancedcombathud.hudData.other.movement.moved /
+        canvas.hud.sw5eenhancedcombathud.hudData.other.movement.max
     );
-    canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.current =
-      canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.moved -
-      bars * canvas.hud.sw5e_enhancedcombathud.hudData.other.movement.max;
-    canvas.hud.sw5e_enhancedcombathud.updateMovement(bars);
+    canvas.hud.sw5eenhancedcombathud.hudData.other.movement.current =
+      canvas.hud.sw5eenhancedcombathud.hudData.other.movement.moved -
+      bars * canvas.hud.sw5eenhancedcombathud.hudData.other.movement.max;
+    canvas.hud.sw5eenhancedcombathud.updateMovement(bars);
   }
 });
 
 Hooks.on("updateCombat", (combat, updates) => {
   if (
-    canvas.hud.sw5e_enhancedcombathud?.hudData &&
+    canvas.hud.sw5eenhancedcombathud?.hudData &&
     game.combat?.current?.tokenId ==
-      canvas.hud.sw5e_enhancedcombathud?.hudData?.token?.id
+      canvas.hud.sw5eenhancedcombathud?.hudData?.token?.id
   ) {
-    canvas.hud.sw5e_enhancedcombathud.newRound();
+    canvas.hud.sw5eenhancedcombathud.newRound();
   }
-  canvas.hud.sw5e_enhancedcombathud?.updatePass();
+  canvas.hud.sw5eenhancedcombathud?.updatePass();
 });
 
 Hooks.on("deleteCombat", (combat, updates) => {
-  canvas.hud.sw5e_enhancedcombathud?.newRound();
+  canvas.hud.sw5eenhancedcombathud?.newRound();
 });
 
 Hooks.on("deleteToken", (token, updates) => {
   if (
-    canvas.hud.sw5e_enhancedcombathud?.rendered &&
-    canvas.hud.sw5e_enhancedcombathud.hudData.token.id === token.id
+    canvas.hud.sw5eenhancedcombathud?.rendered &&
+    canvas.hud.sw5eenhancedcombathud.hudData.token.id === token.id
   ) {
-    canvas.hud.sw5e_enhancedcombathud.close();
+    canvas.hud.sw5eenhancedcombathud.close();
   }
 });
 
 Hooks.on("preUpdateCombat", (combat, updates) => {
   if (
-    game.settings.get("sw5e_enhancedcombathud", "openCombatStart") &&
+    game.settings.get("sw5eenhancedcombathud", "openCombatStart") &&
     canvas.tokens.controlled[0] &&
-    !canvas.hud.sw5e_enhancedcombathud?.rendered &&
+    !canvas.hud.sw5eenhancedcombathud?.rendered &&
     combat.previous?.round === null &&
     combat.previous?.turn === null
   ) {
     const token = canvas.tokens.get(canvas.tokens.controlled[0]?.id);
     if(!token?.actor) return
-    canvas.hud.sw5e_enhancedcombathud.bind(token);
+    canvas.hud.sw5eenhancedcombathud.bind(token);
   }
 });
 
-Hooks.on("updateItem", (item) =>{canvas.hud.sw5e_enhancedcombathud?.checkReRender(item)})
-Hooks.on("deleteItem", (item) =>{canvas.hud.sw5e_enhancedcombathud?.checkReRender(item)})
-Hooks.on("createItem", (item) =>{canvas.hud.sw5e_enhancedcombathud?.checkReRender(item)})
+Hooks.on("updateItem", (item) =>{canvas.hud.sw5eenhancedcombathud?.checkReRender(item)})
+Hooks.on("deleteItem", (item) =>{canvas.hud.sw5eenhancedcombathud?.checkReRender(item)})
+Hooks.on("createItem", (item) =>{canvas.hud.sw5eenhancedcombathud?.checkReRender(item)})
