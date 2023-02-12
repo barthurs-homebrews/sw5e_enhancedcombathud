@@ -1,17 +1,12 @@
 {
-    "title": "Argon - Combat HUD",
+    "title": "Argon - Combat HUD (for SW5e)",
     "description": "It's Magic, by Alex",
-    "version": "1.4.9",
+    "version": "1",
     "authors": [
         {
             "name": "theripper93",
             "email": "tsplab@gmail.com",
             "url": "https://www.patreon.com/theripper93"
-        },
-        {
-            "name": "Mouse0270",
-            "url": "https://www.patreon.com/mouse0270",
-            "discord": "mouse0270#0270"
         }
     ],
     "languages": [
@@ -90,11 +85,11 @@
             "private": false
         }
     ],
-    "url": "https://github.com/theripper93/enhancedcombathud",
-    "manifest": "https://github.com/theripper93/enhancedcombathud/releases/latest/download/module.json",
-    "download": "https://github.com/theripper93/enhancedcombathud/releases/download/1.4.9/module.zip",
+    "url": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud",
+    "manifest": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud/releases/download/release/module.json",
+    "download": "https://github.com/barthurs-homebrews/sw5e_enhancedcombathud/releases/download/1.4.9/module.zip",
     "socket": true,
-    "id": "enhancedcombathud",
+    "id": "enhancedcombathud_sw5e",
     "relationships": {
         "requires": [
             {
@@ -108,11 +103,6 @@
                 "id": "sw5e",
                 "type": "system",
                 "compatibility": {}
-            },
-            {
-                "id": "sw5e",
-                "type": "system",
-                "compatibility": {}
             }
         ]
     },
@@ -120,6 +110,6 @@
         "minimum": "10",
         "verified": "10"
     },
-    "name": "enhancedcombathud",
+    "name": "enhancedcombathud_sw5e",
     "minimumCoreVersion": "10"
 }
