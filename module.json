@@ -87,7 +87,7 @@
     ],
     "url": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud",
     "manifest": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud/releases/download/release/module.json",
-    "download": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud/releases/download/release/module.zip",
+    "download": "https://github.com/barthurs-homebrews/sw5eenhancedcombathud/archive/refs/tags/release.zip",
     "socket": true,
     "id": "sw5eenhancedcombathud",
     "relationships": {

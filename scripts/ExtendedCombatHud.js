@@ -7,8 +7,6 @@ class CombatHud {
   }
 
   async init(){
-    console.log('hello there');
-    console.log(game);
     this._itemCount = this.actor.items.size
     this.settings = {
       isMagicItems: game.modules.get("magicitems")?.active,
@@ -26,22 +24,7 @@ class CombatHud {
       localize: {
 
         AC: game.i18n.localize('SW5E.AC'),
-
-        SpellDC: game.i18n.localize('SW5E.UniversalPowerDC'),
-        PowerDC: game.i18n.localize('SW5E.PowerDC'),
-
-        TechPowerDC: game.i18n.localize('SW5E.TechPowerDC'),
-
-        LightPowerDC: game.i18n.localize('SW5E.LightPowerDC'),
-        BonusForceLightPowerDC: game.i18n.localize('SW5E.BonusForceLightPowerDC'),
-
-        DarkPowerDC: game.i18n.localize('SW5E.DarkPowerDC'),
-        BonusForceDarkPowerDC: game.i18n.localize('SW5E.BonusForceDarkPowerDC'),
-
-        UniversalPowerDC: game.i18n.localize('SW5E.UniversalPowerDC'),
-        BonusForceUnivPowerDC: game.i18n.localize('SW5E.BonusForceUnivPowerDC'),
-
-        BonusForceUnivPowerDC: game.i18n.localize('SW5E.BonusForceUnivPowerDC'),
+        SpellDC: game.i18n.localize('SW5E.SpellDC'),
         InitiativeRoll: game.i18n.localize('COMBAT.InitiativeRoll'),
 
         mainactions: game.i18n.localize(
@@ -66,9 +49,9 @@ class CombatHud {
         saves: game.i18n.localize("sw5eenhancedcombathud.hud.saves.name"),
         skills: game.i18n.localize("sw5eenhancedcombathud.hud.skills.name"),
         tools: game.i18n.localize("sw5eenhancedcombathud.hud.tools.name"),
-        powers: {
+        spells: {
           0: CONFIG.SW5E.powerLevels["0"],
-          //pact: CONFIG.SW5E.powerPreparationModes.pact,
+          //pact: CONFIG.SW5E.spellPreparationModes.pact,
           will: CONFIG.SW5E.powerPreparationModes.atwill,
           innate: game.i18n.localize("sw5eenhancedcombathud.hud.spells.innate"),
           1: CONFIG.SW5E.powerLevels["1"],
@@ -83,24 +66,15 @@ class CombatHud {
         },
       },
     };
-    console.log("this:");
-    console.log(this);
     this.actions = {
       attack: await this.getItems({
         actionType: ["action"],
         itemType: ["weapon"],
         equipped: false,
       }),
-      forcepowers: await this.getItems({
+      spells: await this.getItems({
         actionType: ["action"],
         itemType: ["power"],
-        school: ["uni", "drk", "lgt"],
-        prepared: true,
-      }),
-      techpowers: await this.getItems({
-        actionType: ["action"],
-        itemType: ["power"],
-        school: ["tec"],
         prepared: true,
       }),
       special: await this.getItems({
@@ -112,8 +86,6 @@ class CombatHud {
         itemType: game.settings.get("sw5eenhancedcombathud", "showWeaponsItems") ? ["consumable", "equipment", "loot", "weapon"] : ["consumable", "equipment", "loot"],
       }),
     };
-    console.log('THIS.ACTIONS:');
-    console.log(this.actions);
     this.bonus = {
       attack: await this.getItems({
         actionType: ["bonus"],
@@ -122,7 +94,7 @@ class CombatHud {
       }),
       spells: await this.getItems({
         actionType: ["bonus"],
-        itemType: ["spell"],
+        itemType: ["power"],
         prepared: true,
       }),
       special: await this.getItems({
@@ -142,7 +114,7 @@ class CombatHud {
       }),
       spells: await this.getItems({
         actionType: ["reaction", "reactiondamage", "reactionmanual"],
-        itemType: ["spell"],
+        itemType: ["power"],
         prepared: true,
       }),
       special: await this.getItems({
@@ -294,7 +266,6 @@ class CombatHud {
   async getItems(filters) {
     const actionType = filters.actionType;
     const itemType = filters.itemType;
-    const school   = filters.school;
     const equipped = filters.equipped;
     const prepared = filters.prepared;
     let magicitems = [];
@@ -322,71 +293,64 @@ class CombatHud {
         itemData.level !== 0
       )
         {
-        if(!i.isMagicItem){
-          return false;
+        if(!i.isMagicItem)  return false;
         }
-      }
-    if (
+      if (
         actionType &&
         actionType.includes(itemData.activation?.type) &&
         itemType &&
         itemType.includes(i.type)
-      ){
+      )
         return true;
-      }
       return false;
     });
 
-    let powers = {};
-    powers[this.settings.localize.powers["0"]] = [];
-    powers[this.settings.localize.powers["innate"]] = [];
-    powers[this.settings.localize.powers["will"]] = [];
-    //powers[this.settings.localize.powers["pact"]] = [];
-    powers[this.settings.localize.powers["1"]] = [];
-    powers[this.settings.localize.powers["2"]] = [];
-    powers[this.settings.localize.powers["3"]] = [];
-    powers[this.settings.localize.powers["4"]] = [];
-    powers[this.settings.localize.powers["5"]] = [];
-    powers[this.settings.localize.powers["6"]] = [];
-    powers[this.settings.localize.powers["7"]] = [];
-    powers[this.settings.localize.powers["8"]] = [];
-    powers[this.settings.localize.powers["9"]] = [];
+    let spells = {};
+    spells[this.settings.localize.spells["0"]] = [];
+    spells[this.settings.localize.spells["innate"]] = [];
+    spells[this.settings.localize.spells["will"]] = [];
+    spells[this.settings.localize.spells["pact"]] = [];
+    spells[this.settings.localize.spells["1"]] = [];
+    spells[this.settings.localize.spells["2"]] = [];
+    spells[this.settings.localize.spells["3"]] = [];
+    spells[this.settings.localize.spells["4"]] = [];
+    spells[this.settings.localize.spells["5"]] = [];
+    spells[this.settings.localize.spells["6"]] = [];
+    spells[this.settings.localize.spells["7"]] = [];
+    spells[this.settings.localize.spells["8"]] = [];
+    spells[this.settings.localize.spells["9"]] = [];
     if (prepared) {
       for (let item of filteredItems) {
-        if(school && !school.includes(item.system.school)){
-          continue;
-        }
         let key = item.labels.level;
         switch (item.system.preparation.mode) {
           case "innate":
-            key = this.settings.localize.powers["innate"];
+            key = this.settings.localize.spells["innate"];
             break;
 
           case "atwill":
-            key = this.settings.localize.powers["will"];
+            key = this.settings.localize.spells["will"];
             break;
 
           case "pact":
-            key = this.settings.localize.powers["pact"];
+            key = this.settings.localize.spells["pact"];
             break;
         }
-        powers[key].push(item);
+        spells[key].push(item);
       }
 
-      for (let spellLevel of Object.keys(powers)) {
-        if (powers[spellLevel].length == 0) {
-          delete powers[spellLevel];
+      for (let spellLevel of Object.keys(spells)) {
+        if (spells[spellLevel].length == 0) {
+          delete spells[spellLevel];
         }
       }
     }
+
     if (filters.prepared === true) {
-      return powers;
+      return spells;
     } else {
       return filteredItems;
     }
   }
-
-  
   findItemByName(itemName) {
     let items = this.actor.items;
     let item = items.find((i) => i.name == itemName);
@@ -426,7 +390,6 @@ class CombatHud {
       };
     }
     for (let item of items) {
-      //if(item.name == "Vibrostiletto") sets.set1.primary = item;
       if (item.flags.sw5eenhancedcombathud?.set1p) sets.set1.primary = item;
       if (item.flags.sw5eenhancedcombathud?.set2p) sets.set2.primary = item;
       if (item.flags.sw5eenhancedcombathud?.set3p) sets.set3.primary = item;
@@ -459,7 +422,6 @@ class CombatHud {
   }
   
   set hasAction(value) {
-    
     $(canvas.hud.sw5eenhancedcombathud.element)
       .find('.actions-container.has-actions[data-actionbartype="actions"]')
       .toggleClass("actions-used", !value);
@@ -1006,7 +968,6 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
       .text(item.name);
   }
   initSets() {
-    console.log('intiating sets...');
     let set =
       this.hudData.actor.flags.sw5eenhancedcombathud?.activeSet || "set1";
     this.switchSets(set);
@@ -1145,9 +1106,6 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   }
 
   static generateSpells(obj) {
-    console.log('generate spells input:');
-    console.log(obj);
-
     obj = obj
       .replace("０", "0")
       .replace("１", "1")
@@ -1159,34 +1117,31 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
       .replace("７", "7")
       .replace("８", "8")
       .replace("９", "9");
-
-    console.log(obj);
-
-
     let _this = canvas.hud.sw5eenhancedcombathud.hudData;
     let convertSpellSlot;
-    // if (obj == _this.settings.localize.powers.pact) {
-    //   convertSpellSlot = "pact";
-    // } else if (obj.match(/\d+/)) {
+    /*
+    if (obj == _this.settings.localize.spells.pact) {
+      convertSpellSlot = "pact";
+    } else if (obj.match(/\d+/)) {*/
     if (obj.match(/\d+/)) {
       convertSpellSlot = "power" + obj.match(/\d+/)[0];
     }
     let spellSlots = "";
     if (
-      obj == _this.settings.localize.powers["0"] ||
-      obj == _this.settings.localize.powers.will ||
-      obj == _this.settings.localize.powers.innate
+      obj == _this.settings.localize.spells["0"] ||
+      obj == _this.settings.localize.spells.will ||
+      obj == _this.settings.localize.spells.innate
     ) {
       spellSlots =
         '<span class="spell-slot spell-cantrip"><i class="fas fa-infinity"></i></span>';
     } else {
-
-      console.log(convertSpellSlot);
       console.log(_this.spellSlots);
       let spellSlotDetails = _this.spellSlots[convertSpellSlot];
+
+      console.log('spellSlotDetails: ');
       console.log(spellSlotDetails);
-      for (let index = 0; index < parseInt(obj.match(/\d+/)[0]); index++) {
-        console.log(index);
+
+      for (let index = 0; index < spellSlotDetails.max; index++) {
         //spellSlots.push(index < spellSlotDetails.value);
         spellSlots += `<span class="spell-slot spell-${
           index < spellSlotDetails.max - spellSlotDetails.value
@@ -1195,19 +1150,15 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
         }"></span>`;
       }
     }
-    console.log("SPELL SLOTS: ");
+    console.log('SPELL SLOTS:');
     console.log(spellSlots);
     return spellSlots;
   }
 
   updateSpellSlots() {
-    console.log('this.element :: ');
-    console.log(this.element);
     $(this.element)
       .find(".feature-spell-slots")
       .each((index, element) => {
-        console.log('element:');
-        console.log(element);
         let spellSlot = element.dataset.type;
         element.innerHTML = CombatHudCanvasElement.generateSpells(spellSlot);
       });
@@ -1490,13 +1441,18 @@ class CombatHudCanvasElement extends BasePlaceableHUD {
   }
 
   async dragDropSet(set, itemid, target) {
-    console.log('dargdropset??');
     let item = this.hudData.actor.items.find((i) => i.id == itemid);
     if (!item) return;
     let ps = set.substring(4, set.length) == "p" ? "primary" : "secondary";
+    console.log(ps);
     let oldSetItem = this.hudData.sets[set.substring(0, set.length - 1)][ps];
     if (oldSetItem) await oldSetItem.setFlag("sw5eenhancedcombathud", set, false);
     await item.setFlag("sw5eenhancedcombathud", set, true);
+    console.log(this.hudData.sets);
+    console.log(set);
+    console.log(set.substring(0, set.length - 1));
+    console.log(this.hudData.sets[set.substring(0, set.length - 1)]);
+    console.log(target);
     $(target).css({
       "background-image": `url(${
         this.hudData.sets[set.substring(0, set.length - 1)][ps].img
@@ -1638,7 +1594,7 @@ class ECHDiceRoller {
     return await this.actor.rollAbilityTest(ability, { event: event });
   }
 
-  static sw5eRollSkill(skillId, options = {}) {
+  static dnd5eRollSkill(skillId, options = {}) {
     const skl = this.system.skills[skillId];
     const bonuses = getProperty(this.system, "bonuses.abilities") || {};
 
