@@ -1,13 +1,13 @@
 let ECHItems = {}
 
 Hooks.once("ready",()=>{
-  ECHItems[game.i18n.localize("enhancedcombathud.items.disengage.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.disengage.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.disengage.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.disengage.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/journey.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/journey.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.disengage.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.disengage.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -70,7 +70,7 @@ Hooks.once("ready",()=>{
           "startTime": null,
           "turns": 1
         },
-        "icon": "modules/enhancedcombathud/icons/journey.svg",
+        "icon": "modules/sw5e_enhancedcombathud/icons/journey.svg",
         "label": "Disengage",
         "origin": "Item.wyQkeuZkttllAFB1",
         "transfer": false,
@@ -90,7 +90,7 @@ Hooks.once("ready",()=>{
       "core": {
         "sourceId": "Item.wyQkeuZkttllAFB1"
       },
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false
@@ -100,13 +100,13 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  ECHItems[game.i18n.localize("enhancedcombathud.items.hide.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.hide.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.hide.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.hide.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/cloak-dagger.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/cloak-dagger.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.hide.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.hide.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -175,7 +175,7 @@ Hooks.once("ready",()=>{
           "startTime": null,
           "turns": 10
         },
-        "icon": "modules/enhancedcombathud/icons/cloak-dagger.svg",
+        "icon": "modules/sw5e_enhancedcombathud/icons/cloak-dagger.svg",
         "label": "Hide",
         "transfer": false,
         "flags": {
@@ -191,7 +191,7 @@ Hooks.once("ready",()=>{
     ],
     "sort": 0,
     "flags": {
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false,
@@ -204,13 +204,13 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  ECHItems[game.i18n.localize("enhancedcombathud.items.shove.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.shove.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.shove.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.shove.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/shield-bash.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/shield-bash.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.shove.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.shove.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -269,7 +269,7 @@ Hooks.once("ready",()=>{
     "effects": [],
     "sort": 0,
     "flags": {
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false
@@ -279,13 +279,13 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  ECHItems[game.i18n.localize("enhancedcombathud.items.dash.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.dash.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.dash.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.dash.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/walking-boot.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/walking-boot.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.dash.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.dash.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -350,7 +350,7 @@ Hooks.once("ready",()=>{
           "startTime": null,
           "rounds": 1
         },
-        "icon": "modules/enhancedcombathud/icons/walking-boot.svg",
+        "icon": "modules/sw5e_enhancedcombathud/icons/walking-boot.svg",
         "label": "Dash",
         "transfer": false,
         "flags": {
@@ -366,7 +366,7 @@ Hooks.once("ready",()=>{
     ],
     "sort": 0,
     "flags": {
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false
@@ -376,13 +376,13 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  ECHItems[game.i18n.localize("enhancedcombathud.items.dodge.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.dodge.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.dodge.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.dodge.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/armor-upgrade.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/armor-upgrade.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.dodge.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.dodge.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -447,7 +447,7 @@ Hooks.once("ready",()=>{
           "startTime": null,
           "rounds": 1
         },
-        "icon": "modules/enhancedcombathud/icons/armor-upgrade.svg",
+        "icon": "modules/sw5e_enhancedcombathud/icons/armor-upgrade.svg",
         "label": "Dodge",
         "origin": "Item.pakEYcgLYxtKGv7J",
         "transfer": false,
@@ -464,7 +464,7 @@ Hooks.once("ready",()=>{
     ],
     "sort": 0,
     "flags": {
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false
@@ -474,13 +474,13 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  ECHItems[game.i18n.localize("enhancedcombathud.items.ready.name")] = {
-    "name": game.i18n.localize("enhancedcombathud.items.ready.name"),
+  ECHItems[game.i18n.localize("sw5e_enhancedcombathud.items.ready.name")] = {
+    "name": game.i18n.localize("sw5e_enhancedcombathud.items.ready.name"),
     "type": "feat",
-    "img": "modules/enhancedcombathud/icons/clockwork.svg",
+    "img": "modules/sw5e_enhancedcombathud/icons/clockwork.svg",
     "system": {
       "description": {
-        "value": game.i18n.localize("enhancedcombathud.items.ready.desc"),
+        "value": game.i18n.localize("sw5e_enhancedcombathud.items.ready.desc"),
         "chat": "",
         "unidentified": ""
       },
@@ -545,7 +545,7 @@ Hooks.once("ready",()=>{
           "startTime": null,
           "turns": 1
         },
-        "icon": "modules/enhancedcombathud/icons/clockwork.svg",
+        "icon": "modules/sw5e_enhancedcombathud/icons/clockwork.svg",
         "label": "Ready",
         "transfer": false,
         "flags": {
@@ -561,7 +561,7 @@ Hooks.once("ready",()=>{
     ],
     "sort": 0,
     "flags": {
-      "enhancedcombathud": {
+      "sw5e_enhancedcombathud": {
         "set1p": false,
         "set2p": false,
         "set3p": false
@@ -571,7 +571,7 @@ Hooks.once("ready",()=>{
       }
     }
   }
-  if(game.settings.get("enhancedcombathud", "noAA")){
+  if(game.settings.get("sw5e_enhancedcombathud", "noAA")){
     for(let key of Object.keys(ECHItems)) {
       delete ECHItems[key].effects
     }
